@@ -31,7 +31,7 @@ exports.selectModule = function(attr, callback) {
                         }
                     }]
                 }
-                type_option = "Name"
+                type_option = "Name";
             } else {
                 // Value is the ID of module
                 var id_module = options.value;
@@ -46,7 +46,7 @@ exports.selectModule = function(attr, callback) {
                         }
                     }]
                 }
-                type_option = "ID"
+                type_option = "ID";
             }
 
             models.Module.findOne(where).then(function(foundModule) {
@@ -142,7 +142,7 @@ exports.listModule = function(attr, callback) {
     }
 
     models.Module.findAll({
-        order: ["id", "DESC"],
+        order: [["id", "DESC"]],
         include: [{
             model: models.Application,
             where: {
@@ -180,7 +180,7 @@ exports.listModuleByApplication = function(attr, callback) {
             where: {
                 id_application: id_application
             },
-            order: ["id", "ASC"]
+            order: [["id", "ASC"]]
         }).then(function(modules) {
             if (!modules) {
                 var err = new Error();

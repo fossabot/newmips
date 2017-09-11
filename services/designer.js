@@ -339,37 +339,30 @@ function deleteApplicationRecursive(appIds, idx) {
 /* --------------------------------------------------------------- */
 exports.selectModule = function(attr, callback) {
     db_module.selectModule(attr, function(err, infoDB) {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(null, infoDB);
-        }
+        if (err)
+            return callback(err, null);
+        callback(null, infoDB);
     });
 }
 
 exports.createNewModule = function(attr, callback) {
     db_module.createNewModule(attr, function(err, infoDB) {
-        if (err) {
-            callback(err, null);
-        } else {
-            infoDB.moduleName = attr.options.urlValue;
-            // Retrieve list of application modules to update them all
-            db_module.listModuleByApplication(attr, function(err, modules) {
-                if (err) {
-                    callback(err, null);
-                } else {
+        if (err)
+            return callback(err, null);
+        infoDB.moduleName = attr.options.urlValue;
+        // Retrieve list of application modules to update them all
+        db_module.listModuleByApplication(attr, function(err, modules) {
+            if (err)
+                return callback(err, null);
+            // Assign list of existing application modules
+            // Needed to recreate the dropdown list of modules in the interface
+            attr.modules = modules;
 
-                    // Assign list of existing application modules
-                    // Needed to recreate the dropdown list of modules in the interface
-                    attr.modules = modules;
-
-                    // Structure
-                    structure_module.setupModule(attr, function(err, data) {
-                        callback(null, infoDB);
-                    });
-                }
+            // Structure
+            structure_module.setupModule(attr, function(err, data) {
+                callback(null, infoDB);
             });
-        }
+        });
     });
 }
 

@@ -150,7 +150,7 @@ exports.deleteDataField = function (attr, callback) {
 exports.listDataField = function (attr, callback) {
 
     models.DataField.findAll({
-        order: ["id", "DESC"],
+        order: [["id", "DESC"]],
         include: [{
             model: models.DataEntity,
             include: [{

@@ -7,12 +7,12 @@ module.exports = function (sequelize, DataTypes) {
     var attributes = builder.buildForModel(attributes_origin, DataTypes);
     var options = {
         tableName: 'TABLE_NAME',
-        classMethods: {
-            associate: builder.buildAssociation('MODEL_NAME', associations)
-        },
         timestamps: true
     };
 
     var Model = sequelize.define('MODEL_NAME', attributes, options);
+
+    Model.associate = builder.buildAssociation('MODEL_NAME', associations);
+
     return Model;
 };
