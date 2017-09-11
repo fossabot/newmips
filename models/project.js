@@ -12,30 +12,26 @@ module.exports = function(sequelize, DataTypes) {
 		codeName: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "project",
-		classMethods: {
-			associate: function(models) {
-				Project.hasMany(models.Application, {
-                    foreignKey: {
-                        name: 'id_project'
-                    },
-                    onDelete: 'cascade'
-                });
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "project"
 	});
 
-	Project.hook('beforeFindAfterOptions', function(project, callback) {
+	Project.associate = function(models) {
+		Project.hasMany(models.Application, {
+            foreignKey: {
+                name: 'id_project'
+            },
+            onDelete: 'cascade'
+        });
+	}
+
+
+	Project.hook('beforeFindAfterOptions', function(project) {
         if(typeof project.where !== "undefined"){
             if(typeof project.where.name !== "undefined")
                 project.where.name = project.where.name.toLowerCase();
             if(typeof project.where.codeName !== "undefined")
                 project.where.codeName = project.where.codeName.toLowerCase();
         }
-        callback();
     });
 
     Project.hook('beforeCreate', function(project, callback) {

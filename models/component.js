@@ -11,25 +11,21 @@ module.exports = function(sequelize, DataTypes) {
 		codeName: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "component",
-		classMethods: {
-			associate: function(models) {
-				Component.belongsToMany(models.DataEntity, {
-                    foreignKey: 'id_component',
-                    through: "component_data_entity"
-                });
-                Component.belongsTo(models.Module, {
-                    foreignKey: {
-                        name: 'id_module'
-                    },
-                    onDelete: 'cascade'
-                });
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "component"
 	});
+
+    Component.associate = function(models) {
+        Component.belongsToMany(models.DataEntity, {
+            foreignKey: 'id_component',
+            through: "component_data_entity"
+        });
+        Component.belongsTo(models.Module, {
+            foreignKey: {
+                name: 'id_module'
+            },
+            onDelete: 'cascade'
+        });
+    }
 
 	Component.hook('beforeFindAfterOptions', function(component, callback) {
         if(typeof component.where !== "undefined"){
@@ -38,7 +34,6 @@ module.exports = function(sequelize, DataTypes) {
             if(typeof component.where.codeName !== "undefined")
                 component.where.codeName = component.where.codeName.toLowerCase();
         }
-        callback();
     });
 
     Component.hook('beforeCreate', function(component, callback) {

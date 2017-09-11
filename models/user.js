@@ -17,20 +17,16 @@ module.exports = function(sequelize, DataTypes) {
 		token_password_reset: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "user",
-		classMethods: {
-			associate: function(models) {
-				User.belongsTo(models.Role, {
-                    foreignKey: {
-                        name: 'id_role'
-                    }
-                });
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "user"
 	});
+
+	User.associate = function(models) {
+		User.belongsTo(models.Role, {
+            foreignKey: {
+                name: 'id_role'
+            }
+        });
+	}
 
 	return User;
 };

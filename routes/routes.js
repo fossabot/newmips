@@ -35,6 +35,7 @@ var models = require('../models/');
 
 /* GET home page. */
 router.get('/', block_access.loginAccess, function(req, res) {
+    console.log("salut");
     res.redirect('/login');
 });
 
@@ -402,7 +403,6 @@ router.post('/reset_password_form', block_access.loginAccess, function(req, res)
 });
 
 router.get('/login', block_access.loginAccess, function(req, res) {
-
     var redirect = req.params.redirect;
     if (typeof redirect === 'undefined') {
         redirect = "/default/home";

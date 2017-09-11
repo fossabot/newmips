@@ -135,7 +135,7 @@ router.get('/preview', block_access.isLoggedIn, function(req, res) {
     models.Application.findOne({where: {id: id_application}}).then(function(application) {
         req.session.id_project = application.id_project;
 
-        models.Module.findAll({where: {id_application: application.id}, order: 'id_application ASC'}).then(function(modules) {
+        models.Module.findAll({where: {id_application: application.id}, order: ["id_application", "ASC"]}).then(function(modules) {
             var module = modules[0];
             req.session.id_module = module.id;
             var math = require('math');

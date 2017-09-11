@@ -13,6 +13,7 @@ var morgan = require('morgan');
 var app      = express();
 var globalConf = require('./config/global');
 var protocol = globalConf.protocol;
+var slackConf = require('./config/slack');
 var port = globalConf.port;
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -127,10 +128,9 @@ app.use(function(req, res, next) {
     		}
 	        req.session.toastr = [];
         }
-        if (locals.isSlackChatEnabled = globalConf.slack_chat_enabled) {
-        	var slackConf = require('./config/slack');
+        if (locals.isSlackChatEnabled = globalConf.slack_chat_enabled)
         	locals.slackApiToken = slackConf.SLACK_API_TOKEN;
-        }
+
         helper.getNbInstruction(function(totalInstruction){
         	// Get nbInstruction
             locals.cptInstruction = totalInstruction;
@@ -138,6 +138,7 @@ app.use(function(req, res, next) {
             //locals.limitInstruction = globalConf.limitInstruction;
             // Pourcent for progress bar
             locals.pourcentInstruction = (locals.cptInstruction*100)/300;
+
 			render.call(res, view, locals, cb);
 		});
     };

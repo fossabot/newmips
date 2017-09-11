@@ -1,11 +1,9 @@
 // Route middleware to make sure if user is identified
 exports.isLoggedIn = function(req, res, next) {
     // If user is authenticated in the session, carry on
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated())
         return next();
-    }
     else {
-        //req.session.redirect_to = req.protocol + '://' + req.get('host') + req.originalUrl;
         // if they aren't redirect them to the home page
         res.redirect('/login');
     }

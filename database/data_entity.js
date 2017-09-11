@@ -206,7 +206,7 @@ exports.createNewDataEntityTarget = function(attr, callback) {
 exports.listDataEntity = function(attr, callback) {
 
 	models.DataEntity.findAll({
-		order: 'id DESC',
+		order: ["id", "DESC"],
 		include: [{
 			model: models.Module,
 			include: [{

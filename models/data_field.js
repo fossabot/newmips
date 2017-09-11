@@ -12,21 +12,17 @@ module.exports = function(sequelize, DataTypes) {
 		type: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "data_field",
-		classMethods: {
-			associate: function(models) {
-				DataField.belongsTo(models.DataEntity, {
-                    foreignKey: {
-                        name: 'id_data_entity'
-                    },
-                    onDelete: 'cascade'
-                });
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "data_field"
 	});
+
+	DataField.associate = function(models) {
+		DataField.belongsTo(models.DataEntity, {
+            foreignKey: {
+                name: 'id_data_entity'
+            },
+            onDelete: 'cascade'
+        });
+	}
 
 	DataField.hook('beforeFindAfterOptions', function(field, callback) {
         if(typeof field.where !== "undefined"){
@@ -35,7 +31,6 @@ module.exports = function(sequelize, DataTypes) {
             if(typeof field.where.codeName !== "undefined")
                 field.where.codeName = field.where.codeName.toLowerCase();
         }
-        callback();
     });
 
     DataField.hook('beforeCreate', function(field, callback) {

@@ -13,6 +13,7 @@ var sequelize = new Sequelize(config.connection.database, config.connection.user
     host: config.connection.host,
     logging: false,
     port: config.connection.port,
+    dialect: 'mysql',
     dialectOptions: {
         multipleStatements: true
     },

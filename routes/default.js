@@ -51,6 +51,8 @@ router.get('/home', block_access.isLoggedIn, function(req, res) {
             data.code = 500;
             res.render('common/error', data);
         });
+    }).catch(function(err) {
+        console.log(err);
     });
 });
 

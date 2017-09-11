@@ -10,15 +10,7 @@ module.exports = function(sequelize, DataTypes) {
 		name: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "role",
-		classMethods: {
-			associate: function(models) {
-
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "role"
 	});
 
 	return Role;

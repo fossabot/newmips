@@ -11,30 +11,26 @@ module.exports = function(sequelize, DataTypes) {
 		codeName: DataTypes.STRING,
 		version: DataTypes.INTEGER
 	}, {
-		tableName: "data_entity",
-		classMethods: {
-			associate: function(models) {
-				DataEntity.belongsTo(models.Module, {
-                    foreignKey: {
-                        name: 'id_module'
-                    },
-                    onDelete: 'cascade'
-                });
-                DataEntity.hasMany(models.DataField, {
-                    foreignKey: {
-                        name: 'id_data_entity'
-                    }
-                });
-                DataEntity.belongsToMany(models.Component, {
-                    foreignKey: 'id_entity',
-                    through: "component_data_entity"
-                });
-			}
-		},
-		instanceMethods: {
-
-		}
+		tableName: "data_entity"
 	});
+
+	DataEntity.associate = function(models) {
+		DataEntity.belongsTo(models.Module, {
+            foreignKey: {
+                name: 'id_module'
+            },
+            onDelete: 'cascade'
+        });
+        DataEntity.hasMany(models.DataField, {
+            foreignKey: {
+                name: 'id_data_entity'
+            }
+        });
+        DataEntity.belongsToMany(models.Component, {
+            foreignKey: 'id_entity',
+            through: "component_data_entity"
+        });
+	}
 
 	DataEntity.hook('beforeFindAfterOptions', function(entity, callback) {
 		if(typeof entity.where !== "undefined"){
@@ -43,7 +39,6 @@ module.exports = function(sequelize, DataTypes) {
 			if(typeof entity.where.codeName !== "undefined")
     			entity.where.codeName = entity.where.codeName.toLowerCase();
 		}
-    	callback();
     });
 
 	DataEntity.hook('beforeCreate', function(entity, callback) {
