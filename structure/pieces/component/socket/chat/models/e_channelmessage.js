@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
     var attributes = builder.buildForModel(attributes_origin, DataTypes);
     var options = {
         tableName: 'ID_APPLICATION_e_chat_channelmessage',
-        timestamps: true
+        timestamps: true,
+		constraints: false
     };
 
     var Model = sequelize.define('E_channelmessage', attributes, options);

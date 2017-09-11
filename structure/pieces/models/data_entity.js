@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
     var attributes = builder.buildForModel(attributes_origin, DataTypes);
     var options = {
         tableName: 'TABLE_NAME',
-        timestamps: true
+        timestamps: true,
+        constraints: false
     };
 
     var Model = sequelize.define('MODEL_NAME', attributes, options);

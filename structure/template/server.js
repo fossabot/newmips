@@ -316,8 +316,8 @@ if (protocol == 'https') {
 	});
 }
 else {
-	models.sequelize.sync({ logging: false, hooks: false }).then(function() {
-		models.sequelize.customAfterSync().then(function(){
+	models.sequelize.sync({alter:true, logging: false, hooks: false }).then(function() {
+		// models.sequelize.customAfterSync().then(function(){
 			models.E_user.findAll().then(function(users) {
 				if (!users || users.length == 0) {
                     models.E_group.create({version:0, f_label: 'admin'}).then(function(){
@@ -345,11 +345,11 @@ else {
 
 			server.listen(port);
 			console.log("Started on "+port);
-		}).catch(function(err){
-			console.log("ERROR - SYNC");
-			logger.silly(err);
-			console.log(err);
-		});
+		// }).catch(function(err){
+		// 	console.log("ERROR - SYNC");
+		// 	logger.silly(err);
+		// 	console.log(err);
+		// });
 	}).catch(function(err){
 		console.log("ERROR - SYNC");
 		logger.silly(err);
