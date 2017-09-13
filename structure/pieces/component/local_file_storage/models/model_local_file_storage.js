@@ -6,8 +6,7 @@ var associations = require("./options/COMPONENT_NAME_LOWER.json");
 module.exports = function(sequelize, DataTypes) {
 	var attributes = builder.buildForModel(attributes_origin, DataTypes);
 	var options = {
-		tableName: 'TABLE_NAME',
-		constraints: false
+		tableName: 'TABLE_NAME'
 	};
 
     var Model = sequelize.define('COMPONENT_NAME', attributes, options);

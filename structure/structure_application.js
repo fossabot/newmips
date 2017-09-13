@@ -296,7 +296,7 @@ exports.initializeApplication = function(id_application, id_user, name_applicati
                                                 models.User.findOne({where: {id: id_user}}).then(function(user) {
                                                     // Sync workspace's database and insert admin user
                                                     var workspaceSequelize = require(__dirname+ '/../workspace/'+id_application+'/models/');
-                                                    workspaceSequelize.sequelize.sync({ logging: console.log, hooks: false }).then(function(){
+                                                    workspaceSequelize.sequelize.sync({alter: true, logging: console.log, hooks: false }).then(function(){
                                                         workspaceSequelize.E_group.create({f_label: 'admin'}).then(function(){
                                                             workspaceSequelize.E_role.create({f_label: 'admin'}).then(function(){
                                                                 workspaceSequelize.E_user.create({

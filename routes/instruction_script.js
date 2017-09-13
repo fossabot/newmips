@@ -274,13 +274,6 @@ router.post('/execute', block_access.isLoggedIn, multer({
 
     rl.on('line', function(sourceLine) {
         var line = sourceLine;
-        // for (var i = 0; i < sourceLine.length; i++) {
-        //     var asciiValue = sourceLine.charCodeAt(i);
-        //     if ((asciiValue >= 32 && asciiValue < 155))
-        //         line += sourceLine.charAt(i);
-        //     else if (asciiValue == 65533)
-        //         line += 'é';
-        // }
 
         // Empty line || One line comment scope
         if (line.trim() == '' || ((line.indexOf('/*') != -1 && line.indexOf('*/') != -1) || line.indexOf('//*') != -1))
