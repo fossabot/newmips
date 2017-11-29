@@ -1,4 +1,6 @@
 # Newmips
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcamillem%2Fnewmips.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcamillem%2Fnewmips?ref=badge_shield)
+
 
 Newmips is a computer aided software that enable to create NodeJS applications with a ChatBot. <br>
 Official Website is : <a href="http://www.newmips.com">www.newmips.com</a>
@@ -70,3 +72,6 @@ Newmips Software documentation is available at http://docs.newmips.com.
 Newmips is released under the GNU/AGPLv3 license.
 
 <br>
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcamillem%2Fnewmips.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcamillem%2Fnewmips?ref=badge_large)
